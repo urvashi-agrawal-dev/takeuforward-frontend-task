@@ -1,14 +1,26 @@
 import { format } from 'date-fns'
 import { ChevronLeft, ChevronRight, Sun, Moon } from 'lucide-react'
 
+/**
+ * Props interface for Header component
+ */
 interface HeaderProps {
+  /** Current month being displayed */
   currentMonth: Date
+  /** Current dark mode state */
   isDarkMode: boolean
+  /** Callback function to toggle dark mode */
   onDarkModeToggle: () => void
+  /** Callback function to navigate to previous month */
   onPreviousMonth: () => void
+  /** Callback function to navigate to next month */
   onNextMonth: () => void
 }
 
+/**
+ * Header component - displays calendar title and navigation controls
+ * Features month navigation and dark mode toggle with premium interactions
+ */
 export default function Header({
   currentMonth,
   isDarkMode,

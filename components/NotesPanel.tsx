@@ -3,18 +3,48 @@ import { format } from 'date-fns'
 import { FileText, Calendar, Save, Trash2 } from 'lucide-react'
 import { DateRange } from './InteractiveWallCalendar'
 
+/**
+ * Interface for monthly notes data
+ */
 interface MonthNotes {
+  /**
+   * General notes for the month
+   */
   general: string
+  /**
+   * Date-specific notes for the month
+   */
   dateSpecific: { [date: string]: string }
 }
 
+/**
+ * Interface for NotesPanel component props
+ */
 interface NotesPanelProps {
+  /**
+   * Current month being displayed
+   */
   currentMonth: Date
+  /**
+   * Notes data for the current month
+   */
   notes: MonthNotes
+  /**
+   * Selected date range for range-specific notes
+   */
   selectedRange: DateRange
+  /**
+   * Callback function to handle notes changes
+   * @param type Type of note being changed ('general' or 'range')
+   * @param value New note value
+   * @param date Optional date for range-specific notes
+   */
   onNotesChange: (type: 'general' | 'date', value: string, date?: Date) => void
 }
 
+/**
+ * NotesPanel component for displaying and editing monthly notes
+ */
 export default function NotesPanel({
   currentMonth,
   notes,
@@ -24,8 +54,11 @@ export default function NotesPanel({
   const [activeTab, setActiveTab] = useState<'general' | 'range'>('general')
   const [tempNote, setTempNote] = useState('')
   
-  // Get note for selected date range
-  const getRangeNote = () => {
+  /**
+   * Get range note for current selection
+   * Returns empty string if no valid range exists
+   */
+  const getRangeNote = (): string => {
     if (!selectedRange.start || !selectedRange.end) return ''
     
     const dateKey = format(selectedRange.start, 'yyyy-MM-dd')
@@ -49,7 +82,8 @@ export default function NotesPanel({
   }
   
   // Update temp note when selection changes
-  const handleTabChange = (tab: 'general' | 'range') => {
+  // Ensures range note is loaded when switching to range tab
+  const handleTabChange = (tab: 'general' | 'range'): void => {
     if (tab === 'range') {
       setTempNote(getRangeNote())
     }

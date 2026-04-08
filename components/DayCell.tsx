@@ -25,14 +25,15 @@ export default function DayCell({
 }: DayCellProps) {
   const dayNumber = format(date, 'd')
   
-  // Determine the appropriate CSS classes
+  // Determine the appropriate CSS classes with defensive coding
   let cellClasses = 'calendar-day relative border-r border-b border-gray-200 dark:border-gray-600 '
   
   // Add range classes for continuous highlighting
-  if (rangeClass) {
+  if (rangeClass && typeof rangeClass === 'string') {
     cellClasses += rangeClass + ' '
   }
   
+  // Apply styling based on date properties with proper boolean checks
   if (isToday) {
     cellClasses += 'today '
   } else if (isStart || isEnd) {
@@ -65,7 +66,7 @@ export default function DayCell({
           </div>
         )}
         
-        {/* Start/End indicators */}
+        {/* Start/End indicators - show only for single start or end, not both */}
         {isStart && !isEnd && (
           <div className="absolute top-1 right-1">
             <div className="w-2 h-2 bg-blue-500 rounded-full" title="Start date" />
@@ -84,8 +85,8 @@ export default function DayCell({
         )}
       </div>
       
-      {/* Tooltip for holidays */}
-      {holiday && (
+      {/* Tooltip for holidays - only render if holiday exists and is a string */}
+      {holiday && typeof holiday === 'string' && (
         <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-20">
           {holiday}
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800" />

@@ -75,38 +75,36 @@ export default function InteractiveWallCalendar() {
     }, 300)
   }
 
-  const handleDateSelect = (date: Date) => {
-    setSelectedRange(prev => {
-      // If no selection, start new range
-      if (!prev.start) {
-        return { start: date, end: null }
+  const handleDateSelect = (date: Date): void => {
+    if (!selectedRange.start) {
+      // Select start date
+      setSelectedRange({ start: date, end: null })
+    } else if (!selectedRange.end) {
+      // Select end date
+      if (date < selectedRange.start) {
+        // If selected date is before start date, swap them
+        setSelectedRange({ start: date, end: selectedRange.start })
+      } else {
+        setSelectedRange({ start: selectedRange.start, end: date })
       }
-      
-      // If only start is selected, set end or reset if same date
-      if (!prev.end) {
-        if (date.getTime() === prev.start.getTime()) {
-          return { start: null, end: null }
-        }
-        return { start: prev.start, end: date }
-      }
-      
-      // If both are selected, start new range
-      return { start: date, end: null }
-    })
+    } else {
+      // Reset and select new start date
+      setSelectedRange({ start: date, end: null })
+    }
   }
 
   const handleResetSelection = () => {
     setSelectedRange({ start: null, end: null })
   }
 
-  const getMonthKey = (date: Date) => {
+  const getMonthKey = (date: Date): string => {
     return format(date, 'yyyy-MM')
   }
 
   const currentMonthKey = getMonthKey(currentMonth)
   const currentMonthNotes = notes[currentMonthKey] || { general: '', dateSpecific: {} }
 
-  const handleNotesChange = (type: 'general' | 'date', value: string, date?: Date) => {
+  const handleNotesChange = (type: 'general' | 'date', value: string, date?: Date): void => {
     setNotes(prev => {
       const updated = { ...prev }
       if (!updated[currentMonthKey]) {
