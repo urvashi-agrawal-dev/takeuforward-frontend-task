@@ -149,24 +149,28 @@ export default function InteractiveWallCalendar() {
                 ))}
               </div>
               
-              {/* Hero Image Section */}
-              <div className="curved-transition">
-                <div className="aspect-video relative overflow-hidden">
+              {/* Hero Image Section - Desktop */}
+              <div className="relative">
+                <div className="h-[350px] relative overflow-hidden">
                   <img
-                    src={`https://picsum.photos/seed/${format(currentMonth, 'yyyy-MM')}/800/400.jpg`}
+                    src={`https://picsum.photos/seed/${format(currentMonth, 'yyyy-MM')}/800/350.jpg`}
                     alt={`${format(currentMonth, 'MMMM yyyy')} calendar image`}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
-                  <div className="absolute bottom-4 left-4 text-white">
+                  {/* Dark gradient overlay for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  {/* Text positioned above curved shape with proper z-index */}
+                  <div className="absolute bottom-16 left-4 right-4 text-white z-10">
                     <h3 className="text-2xl font-bold drop-shadow-lg">
                       {format(currentMonth, 'MMMM yyyy')}
                     </h3>
-                    <p className="text-sm drop-shadow-md opacity-90">
+                    <p className="text-base drop-shadow-md opacity-90">
                       A beautiful month for planning and productivity.
                     </p>
                   </div>
                 </div>
+                {/* Curved transition with reduced height and smooth curve */}
+                <div className="h-14 bg-white dark:bg-gray-800 rounded-t-[100%] -mt-14 relative z-0" />
               </div>
               
               {/* Calendar Grid */}
@@ -208,24 +212,28 @@ export default function InteractiveWallCalendar() {
                 ))}
               </div>
               
-              {/* Hero Image Section */}
-              <div className="curved-transition">
-                <div className="aspect-video relative overflow-hidden">
+              {/* Hero Image Section - Tablet */}
+              <div className="relative">
+                <div className="h-[300px] relative overflow-hidden">
                   <img
                     src={`https://picsum.photos/seed/${format(currentMonth, 'yyyy-MM')}/600/300.jpg`}
                     alt={`${format(currentMonth, 'MMMM yyyy')} calendar image`}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
-                  <div className="absolute bottom-3 left-3 text-white">
+                  {/* Dark gradient overlay for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  {/* Text positioned above curved shape with proper z-index */}
+                  <div className="absolute bottom-14 left-3 right-3 text-white z-10">
                     <h3 className="text-xl font-bold drop-shadow-lg">
                       {format(currentMonth, 'MMMM yyyy')}
                     </h3>
-                    <p className="text-xs drop-shadow-md opacity-90">
+                    <p className="text-sm drop-shadow-md opacity-90">
                       A beautiful month for planning and productivity.
                     </p>
                   </div>
                 </div>
+                {/* Curved transition with reduced height and smooth curve */}
+                <div className="h-12 bg-white dark:bg-gray-800 rounded-t-[100%] -mt-12 relative z-0" />
               </div>
               
               {/* Calendar Grid */}
@@ -266,23 +274,28 @@ export default function InteractiveWallCalendar() {
               ))}
             </div>
             
-            <div className="curved-transition">
-              <div className="aspect-video relative overflow-hidden">
+            {/* Hero Image Section - Mobile */}
+            <div className="relative">
+              <div className="h-[250px] relative overflow-hidden">
                 <img
-                  src={`https://picsum.photos/seed/${format(currentMonth, 'yyyy-MM')}/400/200.jpg`}
+                  src={`https://picsum.photos/seed/${format(currentMonth, 'yyyy-MM')}/400/250.jpg`}
                   alt={`${format(currentMonth, 'MMMM yyyy')} calendar image`}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
-                <div className="absolute bottom-3 left-3 text-white">
+                {/* Dark gradient overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                {/* Text positioned above curved shape with proper z-index */}
+                <div className="absolute bottom-12 left-3 right-3 text-white z-10">
                   <h3 className="text-lg font-bold drop-shadow-lg">
                     {format(currentMonth, 'MMMM yyyy')}
                   </h3>
-                  <p className="text-xs drop-shadow-md opacity-90">
+                  <p className="text-sm drop-shadow-md opacity-90">
                     A beautiful month for planning and productivity.
                   </p>
                 </div>
               </div>
+              {/* Curved transition with reduced height and smooth curve */}
+              <div className="h-10 bg-white dark:bg-gray-800 rounded-t-[100%] -mt-10 relative z-0" />
             </div>
           </div>
 
